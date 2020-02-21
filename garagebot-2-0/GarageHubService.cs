@@ -34,7 +34,7 @@ namespace garagebot_2_0
                 throw new Exception("Connection must be started before sending an alert. Use the Connect method to connect to the Hub");
             }
 
-            await hubConnection.SendAsync("alertreceived", user, "");
+            await hubConnection.SendAsync("AlertBroadcaster", user);
             //await hubConnection.SendCoreAsync("AlertReceived", new[] { user });
         }
     }

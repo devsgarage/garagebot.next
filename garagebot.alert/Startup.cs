@@ -30,6 +30,14 @@ namespace garagebot.alert
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSignalR();
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                       .WithOrigins("http://localhost:63671", "https://localhost44372")
+                       .AllowCredentials();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +56,7 @@ namespace garagebot.alert
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
